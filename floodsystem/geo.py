@@ -26,3 +26,19 @@ def stations_within_radius(stations, centre, r):
         if haversine(station.coord,centre) <= r:
             list_of_stations_within.append(station)
     return list_of_stations_within
+
+#Task 1D
+def rivers_with_station(stations):
+    rivers = set()
+    for station in stations:
+        rivers.add(station.river)
+    return rivers
+
+def stations_by_river(stations):
+    dic = {}
+    for station in stations:
+        if station.river in dic.keys():
+            dic[station.river].append(station.name)
+        else:
+            dic.setdefault(station.river,[]).append(station.name) 
+    return dic
