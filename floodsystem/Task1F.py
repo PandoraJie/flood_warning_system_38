@@ -1,0 +1,4 @@
+from stationdata import build_station_list
+from geo import inconsistent_typical_range_stations
+
+print(inconsistent_typical_range_stations(build_station_list))

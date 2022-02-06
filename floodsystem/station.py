@@ -28,6 +28,14 @@ class MonitoringStation:
         self.town = town
 
         self.latest_level = None
+    
+    def typical_range_consistent(self):
+        r1 = self.typical_range[1]
+        r0 = self.typical_range[0]
+        if r1 >= r0:
+            return True
+        else:
+            return False
 
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)
