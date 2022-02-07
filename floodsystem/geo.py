@@ -6,8 +6,8 @@ geographical data.
 
 """
 import numpy as np
-from floodsystem.station import MonitoringStation
-from haversine import haversine, Unit
+from station import MonitoringStation
+from haversine import haversine
 from utils import sorted_by_key  # noqa
 
 
@@ -56,8 +56,7 @@ def rivers_by_station_number(stations, N):
               if station.river == name_of_river:
                   number += 1
           river_station_number.append((name_of_river, number))
-    river_station_number = sorted_by_key(river_station_number, 1)
-    river_station_number = river_station_number.reverse()
+    river_station_number = sorted_by_key(river_station_number, 1, reverse = True)
     append_list = river_station_number[:N]
     return append_list
 
