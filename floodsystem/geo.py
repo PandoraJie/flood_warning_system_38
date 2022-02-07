@@ -45,25 +45,48 @@ def stations_by_river(stations):
     return dic
 
 #Task 1E
-from utils import sorted_by_key
+
+#hl600
+#def rivers_by_station_number(stations, N):
+#    river_station_number = []
+#    for station in stations:
+#            if station.river not in river_station_number:
+#                name_of_river = station.river
+#                number = 0
+#            for station in stations:
+#                if station.river == name_of_river:
+#                    number += 1
+#          river_station_number.append((name_of_river, number))
+#    river_station_number = sorted_by_key(river_station_number, 1, reverse = True)
+#    append_list = river_station_number[:N]
+#    return append_list
+
+#Revised
 def rivers_by_station_number(stations, N):
-    river_station_number = []
-    for station in stations:
-        if station.river not in river_station_number:
-          name_of_river = station.river
-          number = 0
-          for station in stations:
-              if station.river == name_of_river:
-                  number += 1
-          river_station_number.append((name_of_river, number))
-    river_station_number = sorted_by_key(river_station_number, 1, reverse = True)
-    append_list = river_station_number[:N]
-    return append_list
+    station_number_tup =  []
+    dic = stations_by_river(stations)
+    for river in dic.keys():
+        tup = (river,len(dic[river]))
+        station_number_tup.append(tup)
+    station_number_tup_sorted = sorted_by_key(station_number_tup,1,True)
+    while station_number_tup_sorted[N-1][1] == station_number_tup_sorted[N][1]:
+        N += 1
+    return station_number_tup_sorted[:N]
 
 #Task 1F
+
+#hl600
+#def inconsistent_typical_range_stations(stations):
+#    incon_stations = []
+#    for station in stations:
+#        if station.typical_range_consistent() == False:
+#            incon_stations.append(station.name)
+#    return incon_stations
+
+#Revised
 def inconsistent_typical_range_stations(stations):
-    incon_stations = []
+    inconsistent_list = []
     for station in stations:
-        if MonitoringStation.typical_range_consistent(station) == False:
-            incon_stations.append(station.name)
-    return incon_stations
+        if station.typical_range_consistent() == False:
+            inconsistent_list.append(station)
+    return inconsistent_list
