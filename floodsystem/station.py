@@ -39,6 +39,16 @@ class MonitoringStation:
               return True
           else:
               return False
+    
+    def relative_water_level(self):
+        if self.typical_range == None or self.latest_level == None:
+            return None
+        elif self.latest_level <= self.typical_range[0]:
+            return 0.0
+ #       elif self.latest_level >= self.typical_range[1]:
+  #          return 1.0
+        else:
+            return (self.latest_level - self.typical_range[0])/(self.typical_range[1]-self.typical_range[0])
 
     def __repr__(self):
         d = "Station name:     {}\n".format(self.name)
