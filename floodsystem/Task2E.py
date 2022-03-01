@@ -15,8 +15,8 @@ dt = 10
 dates = []
 levels = []
 for station in risk_stations:
-    date, level = fetch_measure_levels(station.measure_id,dt=datetime.timedelta(days=dt))
-    dates.append(date)
-    levels.append(level)
-
-plot_water_levels(risk_stations,dates,levels)
+    try:
+        dates, levels = fetch_measure_levels(station.measure_id,dt=datetime.timedelta(days=dt))
+        plot_water_levels(station,dates,levels)
+    except:
+        print("Error:{}".format(station.name))
